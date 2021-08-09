@@ -49,7 +49,7 @@ def add_subcommands(subparsers):
         lambda p: p.add_argument("package", type=str),
         lambda p: p.add_argument("--version", type=str, required=True),
         lambda p: p.add_argument("--base", type=str, required=True),
-        lambda p: p.add_argument("--filename", type=str, required=True),
+        lambda p: p.add_argument("--filename", type=str),
         lambda p: p.add_argument("--project", type=str, required=True)
     ]
     add_subcommand(
@@ -69,14 +69,14 @@ def add_subcommands(subparsers):
         subparsers,
         'push',
         [lambda p: p.add_argument(
-            "--file", type=str, default=DEFAULT_PARSERFILE)],
+            "--towfile", type=str, default=DEFAULT_PARSERFILE)],
         help=f'push packages specified in the {DEFAULT_PARSERFILE}'
     )
     add_subcommand(
         subparsers,
         'pull',
         [lambda p: p.add_argument(
-            "--file", type=str, default=DEFAULT_PARSERFILE)],
+            "--towfile", type=str, default=DEFAULT_PARSERFILE)],
         help=f'pull packages specified in the {DEFAULT_PARSERFILE}'
     )
     add_subcommand(
