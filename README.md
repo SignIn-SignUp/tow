@@ -1,8 +1,8 @@
 # tow
 
 A package manager for generic package registry in GitLab. \
-Every group or projectin GitLab has a package registry in which generic packages can be stored and retrived from.
-> This project is still under heavy development. 
+Every group or project in GitLab has a package registry in which generic packages can be stored and retrived from.
+> This project is still under development. 
 
 Packages can be pushed and pulled from a prject or group either specified in a Towfile or via the cli.
 The access has to be granted via a private/project access token. This token can be provided dynamicaly or saved by initializing __tow__.
