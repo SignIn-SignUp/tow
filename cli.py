@@ -123,7 +123,7 @@ def parse_args(cfg_parser, tokenrepo, args=None):
             )
         elif token:
 
-            conf_file = args.file
+            conf_file = args.towfile
 
             if not (os.path.exists(conf_file) and os.path.isfile(conf_file)):
                 print(f'no such file {conf_file}.')
