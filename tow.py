@@ -34,11 +34,11 @@ def main(args=None):
             GitLabController(config.base, config.token)
         )
         if cmd == 'push':
+            config.packages = [p for p in config.packages if p.src]
             verify_for_push(config=config)
             for package in config.packages:
                 push(package=package, repo=repo)
         elif cmd == 'pull':
-            config.packages = [p for p in config.packages if p.src]
             verify_for_pull(config=config)
             for package in config.packages:
                 pull(package=package, repo=repo)
