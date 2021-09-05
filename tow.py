@@ -1,6 +1,7 @@
 
 from os import path
 from pathlib import Path
+import sys
 from global_packagedir import GlobalPackagedir
 from package_controller import PackageController
 from config_verifyer import verify_for_pull, verify_for_push
@@ -15,6 +16,7 @@ from tokendir import Tokendir
 
 PACKAGE_BASE = 'towed_packages'
 GLOBAL_BASE = path.join(Path.home(), '.tow')
+V_PRINT = None
 
 
 def main(args=None):
@@ -26,6 +28,8 @@ def main(args=None):
     if tpl:
         cmd, config = tpl
 
+        V_PRINT = print if config.settings.verbose else lambda *a, **k: None
+
         repo = PackageRepo(
             PackageController(
                 LocalPackagedir(PACKAGE_BASE),
@@ -35,13 +39,18 @@ def main(args=None):
         )
         if cmd == 'push':
             config.packages = [p for p in config.packages if p.src]
+            V_PRINT(f'{[ p.name for p in config.packages]} will be pushed.')
             verify_for_push(config=config)
             for package in config.packages:
+                V_PRINT(f'Pushig {package.name} ..', end='')
                 push(package=package, repo=repo)
+                V_PRINT(f'. done.')
         elif cmd == 'pull':
             verify_for_pull(config=config)
             for package in config.packages:
+                V_PRINT(f'Pulling {package.name} ..', end='')
                 pull(package=package, repo=repo)
+                V_PRINT(f'. done.')
 
 
 def pull(package: Package, repo):
