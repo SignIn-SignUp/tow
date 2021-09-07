@@ -1,8 +1,10 @@
 import os
-from package import Package
+from .package import Package
 import yaml
 
-from package import Package
+
+def get_parser():
+    return {'get_packages': get_packages, 'get_base': get_base}
 
 
 def get_packages(path: str):

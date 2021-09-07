@@ -1,8 +1,8 @@
 
 import os
 
-from package import Package
-from config import Config
+from .package import Package
+from .config import Config
 
 
 def verify_basic_conf(config: Config):

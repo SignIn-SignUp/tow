@@ -20,8 +20,14 @@ setup(
                  "Packages can be pushed and pulled with authentication through a personal acess token."),
     keywords="tow gitlab package-manager generic-package-registry generic-packages",
     long_description=read('README.md'),
+    packages=['pkg_manager'],
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Topic :: Utilities"
     ],
+    entry_points={
+        'console_scripts': [
+            'tow=pkg_manager.tow:run',
+        ],
+    },
 )

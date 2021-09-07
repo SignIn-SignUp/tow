@@ -1,27 +1,26 @@
 
 from os import path
 from pathlib import Path
-import sys
-from global_packagedir import GlobalPackagedir
-from package_controller import PackageController
-from config_verifyer import verify_for_pull, verify_for_push
-from package import Package
+from .global_packagedir import GlobalPackagedir
+from .package_controller import PackageController
+from .config_verifyer import verify_for_pull, verify_for_push
+from .package import Package
 
-from local_packagedir import LocalPackagedir
-from package_repo import PackageRepo
-from gitlab_controller import GitLabController
-import yml_config_parser
-from cli import parse_args
-from tokendir import Tokendir
+from .local_packagedir import LocalPackagedir
+from .package_repo import PackageRepo
+from .gitlab_controller import GitLabController
+from .yml_config_parser import get_parser
+from .cli import parse_args
+from .tokendir import Tokendir
 
 PACKAGE_BASE = 'towed_packages'
 GLOBAL_BASE = path.join(Path.home(), '.tow')
 V_PRINT = None
 
 
-def main(args=None):
+def run(args=None):
     tpl = parse_args(
-        cfg_parser=yml_config_parser,
+        cfg_parser=get_parser(),
         tokenrepo=Tokendir(base=GLOBAL_BASE),
         args=args
     )
@@ -59,7 +58,3 @@ def pull(package: Package, repo):
 
 def push(package: Package, repo):
     repo.put(package)
-
-
-if __name__ == "__main__":
-    main()

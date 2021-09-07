@@ -1,6 +1,6 @@
 
-from settings import Settings
-from package import Package
+from .settings import Settings
+from .package import Package
 
 
 class Config:

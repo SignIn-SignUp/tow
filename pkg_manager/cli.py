@@ -1,12 +1,12 @@
 import argparse
 import os
 import getpass
-from settings import Settings
+from importlib.metadata import version
 import sys
 
-from package import Package
-from config import Config
-
+from .package import Package
+from .config import Config
+from .settings import Settings
 
 DEFAULT_PARSERFILE = 'Towfile'
 
@@ -113,7 +113,7 @@ def parse_args(cfg_parser, tokenrepo, args=None):
 
     parser.add_argument('-v', '--version', action='version',
                         version='%(prog)s ' +
-                        read('VERSION').strip(),
+                        version("tow"),
                         help='Print verison infomation and exit')
 
     subparsers = parser.add_subparsers(help='Commands', dest='command')

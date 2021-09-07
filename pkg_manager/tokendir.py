@@ -1,9 +1,8 @@
 
 from os import path
 import os
-from pathlib import Path
 
-import aes
+from .aes import encrypt, decrypt
 
 
 class Tokendir:
@@ -16,11 +15,11 @@ class Tokendir:
 
     def get(self, password: str):
         with open(path.join(self.dirpath, 'token'), 'r') as f:
-            return aes.decrypt(password, f.read())
+            return decrypt(password, f.read())
 
     def put(self, password: str, token: str) -> None:
         if not path.exists(self.dirpath):
             os.makedirs(self.dirpath)
         with open(path.join(self.dirpath, 'token'), 'w') as f:
-            enc = aes.encrypt(pw=password, plain_text=token)
+            enc = encrypt(pw=password, plain_text=token)
             f.write(enc)
