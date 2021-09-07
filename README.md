@@ -1,6 +1,6 @@
 # tow
 
-A package manager for generic package registry in GitLab. \
+A package manager for the generic package registry in GitLab. \
 Every group or project in GitLab has a package registry in which generic packages can be stored and retrived from.
 > This project is still under development. 
 

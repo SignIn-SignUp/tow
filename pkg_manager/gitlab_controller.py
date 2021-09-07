@@ -1,6 +1,6 @@
 import gitlab
 
-from package import Package
+from .package import Package
 
 
 class GitLabController:
