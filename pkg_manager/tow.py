@@ -9,7 +9,7 @@ from .package import Package
 from .local_packagedir import LocalPackagedir
 from .package_repo import PackageRepo
 from .gitlab_controller import GitLabController
-from .yml_config_parser import get_parser
+from .yml_config_parser import YMLConfigParser
 from .cli import parse_args
 from .tokendir import Tokendir
 
@@ -20,7 +20,7 @@ V_PRINT = None
 
 def run(args=None):
     tpl = parse_args(
-        cfg_parser=get_parser(),
+        cfg_parser=YMLConfigParser(),
         tokenrepo=Tokendir(base=GLOBAL_BASE),
         args=args
     )
@@ -38,7 +38,8 @@ def run(args=None):
         )
         if cmd == 'push':
             config.packages = [p for p in config.packages if p.src]
-            V_PRINT(f'{[ p.name for p in config.packages]} will be pushed.')
+            V_PRINT(
+                f'{"\n".join([ "- " +str(p.name) for p in config.packages])}\nwill be pushed.')
             verify_for_push(config=config)
             for package in config.packages:
                 V_PRINT(f'Pushig {package.name} ..', end='')
