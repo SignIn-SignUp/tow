@@ -1,8 +1,9 @@
 import argparse
 import os
 import getpass
-from importlib.metadata import version
 import sys
+from importlib.metadata import version
+from os import linesep
 
 from .package import Package
 from .config import Config
@@ -24,10 +25,10 @@ def get_token(tokenrepo):
             "Password for decrypting access token:"))
         if not token:
             token = getpass.getpass(
-                "Access token could not be retrieved. The password might have been wrong.\nPlease enter one:")
+                f"Access token could not be retrieved. The password might have been wrong.{linesep}Please enter one:")
     elif not token:
         token = getpass.getpass(
-            "No access token found.\nPlease enter one:")
+            f"No access token found.{linesep}Please enter one:")
     return token
 
 

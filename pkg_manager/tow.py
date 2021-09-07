@@ -1,5 +1,5 @@
 
-from os import path
+from os import path, linesep
 from pathlib import Path
 from .global_packagedir import GlobalPackagedir
 from .package_controller import PackageController
@@ -39,7 +39,7 @@ def run(args=None):
         if cmd == 'push':
             config.packages = [p for p in config.packages if p.src]
             V_PRINT(
-                f'{"\n".join([ "- " +str(p.name) for p in config.packages])}\nwill be pushed.')
+                f'Packages:{linesep}{linesep.join(["- " +str(p.name) for p in config.packages])}{linesep}will be pushed.')
             verify_for_push(config=config)
             for package in config.packages:
                 V_PRINT(f'Pushig {package.name} ..', end='')
